@@ -1,8 +1,8 @@
-# parser
+# Parser
 
 A Java program that parses web server access log file, loads the log to MySQL and checks if a given IP makes more than a certain number of requests for the given duration.
 
-### Initial Load
+### Initial Load File
 
 First, load the access log into the database for parsing.
 
@@ -14,7 +14,7 @@ Uplaoding access log...
 Done.
 ```
 
-It might take a few minutes. BUt now the table is ready to be queried. Below are two examples.
+It might take a few minutes. But now the table is ready to be queried. Below are two examples.
 
 ### Example 1
 
@@ -27,7 +27,7 @@ java -cp "parser.jar" com.ef.Parser --startDate=2017-01-01.15:00:00 --duration=h
 
 If you open the log file, 192.168.11.231 has 200 or more requests between 2017-01-01.15:00:00 and 2017-01-01.15:59:59
 
-Test by running this SQL directly:
+> Test by running this SQL directly:
 
 ```sql
 select ip, count(*) as count from accesslog where date >= '2017-01-01.15:00:00' and date < '2017-01-01 16:00:00.0' group by ip having count(*) > 200 order by COUNT(*) desc;
@@ -57,7 +57,7 @@ java -cp "parser.jar" com.ef.Parser --startDate=2017-01-01.00:00:00 --duration=d
  
 If you open the log file, 192.168.102.136 has 500 or more requests between 2017-01-01.00:00:00 and 2017-01-01.23:59:59
 
-Test by running this SQL directly:
+> Test by running this SQL directly:
 
 ```sql
 select ip, count(*) as count from accesslog where date >= '2017-01-01.00:00:00' and date < '2017-01-02 00:00:00.0' group by ip having count(*) > 500 order by COUNT(*) desc;
@@ -71,7 +71,7 @@ select ip, count(*) as count from accesslog where date >= '2017-01-01.00:00:00' 
  
 ### SQL Schema
 
-Schema is stored in `schema.sql` but it looks like this:
+The MySQL schema is stored in `schema.sql` I pasted here for convenience:
 
 ```sql
 CREATE DATABASE `weblog`;
