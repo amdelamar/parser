@@ -1,0 +1,29 @@
+plugins {
+	id 'java'
+	id 'application'
+	id "com.github.johnrengelman.shadow" version "2.0.2"
+}
+
+group = 'com.amdelamar'
+jar.baseName = 'parser'
+jar.enabled = false
+mainClassName = 'com.ef.Parser'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	// mysql driver
+    compile 'mysql:mysql-connector-java:6.0.+'
+
+    // Use JUnit test framework
+    testCompile 'junit:junit:4.+'
+}
+
+shadowJar {
+    archiveName = "${project.name}.jar"
+}
